@@ -1,0 +1,43 @@
+<svg id="Notes.NET" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 553.6 553.7">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 136.11px;
+        font-family: Montserrat-SemiBold, Montserrat;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .cls-1, .cls-5 {
+        fill: #1d1d1b;
+      }
+
+      .cls-2 {
+        letter-spacing: -0.04em;
+      }
+
+      .cls-3 {
+        letter-spacing: -0.02em;
+      }
+
+      .cls-4 {
+        fill: none;
+        stroke: #1d1d1b;
+        stroke-linecap: square;
+        stroke-linejoin: round;
+        stroke-width: 24px;
+      }
+
+      .cls-5 {
+        font-size: 180.01px;
+        font-family: Montserrat-Medium, Montserrat;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+      }
+    </style>
+  </defs>
+  <text class="cls-1" transform="translate(103.1 220.1)">No<tspan class="cls-2" x="191.2" y="0">t</tspan><tspan class="cls-3" x="243.1" y="0">es</tspan></text>
+  <rect class="cls-4" x="59.1" y="12" width="482.5" height="482.5" rx="42.6"/>
+  <path class="cls-4" d="M494.5,499.2a42.5,42.5,0,0,1-42.6,42.5H54.6A42.5,42.5,0,0,1,12,499.2V101.8A42.6,42.6,0,0,1,54.6,59.2"/>
+  <text class="cls-5" transform="translate(99.1 379.2)">.NET</text>
+</svg>
