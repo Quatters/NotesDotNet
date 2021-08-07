@@ -13,8 +13,8 @@ namespace WebApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Author = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    Body = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
