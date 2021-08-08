@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using WebApi.Domain.Entities;
+using NotesDotNet.WebApi.Models.Entities;
 
-namespace WebApi.Data
+namespace NotesDotNet.WebApi.Data
 {
 	public class AppDbContext : DbContext
 	{

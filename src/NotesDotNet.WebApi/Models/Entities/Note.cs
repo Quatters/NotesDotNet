@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.Domain.Entities
+namespace NotesDotNet.WebApi.Models.Entities
 {
 	public class Note
 	{

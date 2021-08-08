@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.Dtos
+namespace NotesDotNet.WebApi.Models.Dtos
 {
 	public class NoteDto
 	{
