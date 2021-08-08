@@ -7,7 +7,7 @@
 				</button>
 
 				<div v-else class="card-body border-dark d-flex flex-column justify-content-between">
-					<p class="card-text date mb-2">
+					<div class="card-text date mb-2">
 						{{ new Date().toLocaleDateString() }}
 						<button @click="toggleCreateMode" class="control-buttons">
 							<img width="18" src="@/assets/X.svg" alt="Discard" />
@@ -15,11 +15,11 @@
 						<button @click="createNote()" class="control-buttons">
 							<img width="18" src="@/assets/Check.svg" alt="Submit" />
 						</button>
-					</p>
+					</div>
 
-					<textarea v-model="body" ref="textArea" maxlength="256" :placeholder="placeholder"></textarea>
+					<textarea v-model="bodyText" :placeholder="placeholder" class="no-border"></textarea>
 
-					<p class="card-text text-end author">{{ author }}</p>
+					<input v-model="author" :placeholder="authorPlaceholder" maxlength="16" class="card-text text-end author no-border" />
 				</div>
 			</div>
 		</div>
@@ -33,30 +33,37 @@
 		data() {
 			return {
 				createModeEnabled: false,
-				author: 'user',
-				body: '',
+				authorPlaceholder: 'Anonymous',
+				author: '',
+				bodyText: '',
 				placeholder: 'Type something awesome!',
 			};
 		},
 		methods: {
+			setRandomPlaceholderText() {
+				const random3 = Math.floor(Math.random() * 3);
+				switch (random3) {
+					case 0:
+						this.placeholder = "You didn't type anything :(";
+						break;
+					case 1:
+						this.placeholder = 'There is nothing!';
+						break;
+					default:
+						this.placeholder = "We're very sad now. Here is a blank note.";
+						break;
+				}
+			},
 			createNote() {
-				if (this.body.length !== 0) {
+				/*if (this.author.trim().toLowerCase() === 'admin') {
+					this.author = '';
+					this.authorPlaceholder = "You're not an admin :0";
+				} else*/ if (this.bodyText.length !== 0) {
 					this.toggleCreateMode();
 					this.sendPostRequest();
-					this.body = '';
+					this.bodyText = '';
 				} else {
-					const random3 = Math.floor(Math.random() * 3);
-					switch (random3) {
-						case 0:
-							this.placeholder = "You didn't type anything :(";
-							break;
-						case 1:
-							this.placeholder = 'There is nothing!';
-							break;
-						default:
-							this.placeholder = "We're very sad now. Here is a blank note.";
-							break;
-					}
+					this.setRandomPlaceholderText();
 				}
 			},
 			toggleCreateMode() {
@@ -64,10 +71,17 @@
 				this.placeholder = 'Type something awesome!';
 			},
 			async sendPostRequest() {
-				console.log('POST Request to', this.$store.state.apiUrl);
-				console.log('Sending data:', this.body);
+				console.log('POST Request to', this.$store.state.apiUrl + '/New');
+				console.log('Sending data:', '[body]:', this.bodyText, '[author]:', this.author);
 				try {
-					const response = await axios({ method: 'post', url: this.$store.state.apiUrl, params: { body: this.body } });
+					const response = await axios({
+						method: 'post',
+						url: this.$store.state.apiUrl + '/New',
+						data: {
+							body: this.bodyText,
+							author: this.author,
+						},
+					});
 					console.log('Server response: success!', response.data);
 				} catch (error) {
 					console.log(error);
@@ -76,7 +90,7 @@
 						// this.networkErrorOccured = true; --emit
 					}
 				} finally {
-					this.$emit('fetchNotes');
+					this.$emit('fetch-notes');
 				}
 			},
 		},
@@ -92,10 +106,6 @@
 </script>
 
 <style scoped>
-	.cursor-pointer {
-		cursor: pointer;
-	}
-
 	.note {
 		height: 300px;
 		width: 300px;
@@ -122,20 +132,10 @@
 	}
 
 	textarea {
-		border: none;
 		height: 100%;
 		display: flex;
 		resize: none;
-		overflow: hidden;
-	}
-
-	textarea:focus {
-		border: none;
-		outline: none;
-	}
-
-	input {
-		text-align: end;
+		overflow: auto;
 	}
 
 	.control-buttons {

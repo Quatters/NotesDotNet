@@ -7,21 +7,39 @@
 					<button class="bulb btn ms-4 shadow-none">
 						<img src="@/assets/Bulb.svg" alt="Bulb" width="20" />
 					</button>
-					<a href="#" class="nav-link text-dark fs-6">Quatters</a>
 				</div>
 
 				<div class="col-12 col-lg-5 mb-2 mb-lg-0 me-lg-3">
 					<div class="input-group input-group-sm">
 						<span class="input-group-text" id="from-text">From</span>
-						<input class="form-control shadow-none" type="date" aria-describedby="from-text" />
+						<input
+							v-model="searchFromDateQuery"
+							@input="search"
+							class="form-control shadow-none"
+							type="date"
+							aria-describedby="from-text"
+						/>
 						<span class="input-group-text" id="to-text">To</span>
-						<input class="form-control shadow-none" type="date" aria-describedby="to-text" />
+						<input
+							v-model="searchToDateQuery"
+							@input="search"
+							class="form-control shadow-none"
+							type="date"
+							aria-describedby="to-text"
+						/>
 					</div>
 				</div>
 				<div class="col-12 col-lg-3 me-lg-3">
 					<div class="input-group">
-						<input type="search" class="form-control shadow-none" placeholder="Type here..." aria-label="Search" />
-						<button class="btn btn-sm btn-outline-dark shadow-none" type="button">Search</button>
+						<input
+							v-model="searchAuthorQuery"
+							@input="search"
+							type="search"
+							class="form-control shadow-none"
+							placeholder="Search for somebody..."
+							aria-label="Search"
+						/>
+						<button @click="search" class="btn btn-sm btn-outline-dark shadow-none" type="button">Search</button>
 					</div>
 				</div>
 			</div>
@@ -30,7 +48,26 @@
 </template>
 
 <script>
-	export default {};
+	export default {
+		data() {
+			return {
+				searchAuthorQuery: '',
+				searchFromDateQuery: '',
+				searchToDateQuery: '',
+			};
+		},
+		methods: {
+			search() {
+				if (this.timer) {
+					clearTimeout(this.timer);
+					this.timer = null;
+				}
+				this.timer = setTimeout(() => {
+					this.$emit('fetch-by-search-query', this.searchAuthorQuery, this.searchFromDateQuery, this.searchToDateQuery);
+				}, 800);
+			},
+		},
+	};
 </script>
 
 <style scoped>

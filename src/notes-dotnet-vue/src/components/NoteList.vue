@@ -1,7 +1,7 @@
 <template>
 	<div class="container content">
 		<div class="row justify-content-center justify-content-md-start g-4 list">
-			<note-constructor @fetchNotes="$emit('fetchNotes')" />
+			<note-constructor class="list-item" @fetch-notes="$emit('fetch-notes')" />
 			<transition-group name="list">
 				<note-instance
 					v-for="note in notes"
@@ -10,6 +10,7 @@
 					:author="note.author"
 					:body="note.body"
 					:dateModified="note.dateModified"
+					class="list-item"
 				/>
 			</transition-group>
 		</div>
@@ -35,26 +36,22 @@
 </script>
 
 <style scoped>
-	.content {
-		margin-top: 3em;
-	}
-
-	.empty-list {
-		color: brown;
-		align-items: center;
-	}
-
 	.list-item {
+		transition: all 0.55s ease;
 		display: inline-block;
-		margin-right: 10px;
 	}
-	.list-enter-active,
-	.list-leave-active {
-		transition: all 0.5s ease;
-	}
+
 	.list-enter-from,
 	.list-leave-to {
 		opacity: 0;
-		transform: translateX(-200px);
+	}
+
+	.list-enter-active,
+	.list-leave-active {
+		opacity: 0;
+	}
+
+	.content {
+		margin-top: 3em;
 	}
 </style>

@@ -22,9 +22,6 @@
 			body: String,
 			dateModified: Date,
 		},
-		data() {
-			return {};
-		},
 	};
 </script>
 

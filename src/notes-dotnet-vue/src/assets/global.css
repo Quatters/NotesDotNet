@@ -6,3 +6,12 @@ body {
 	font-weight: 500;
 	background-color: rgb(252, 252, 252);
 }
+
+.no-border,
+.no-border:focus {
+	border: none;
+	border-width: none;
+	box-shadow: none;
+	outline: none;
+	outline-width: 0;
+}
