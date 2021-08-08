@@ -1,0 +1,13 @@
+:root {
+	--primary-color: rgb(239, 239, 239);
+	--contrast-color: rgb(59, 60, 63);
+	--secondary-color: rgb(247, 247, 247);
+}
+
+.icon {
+	/* 
+	 * Allows to change the .svg color.
+	 * Make sure the original color is #000.
+	 */
+	filter: invert(23%) sepia(8%) saturate(274%) hue-rotate(187deg) brightness(87%) contrast(90%);
+}

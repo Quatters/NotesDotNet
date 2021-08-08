@@ -3,9 +3,9 @@
 		<div class="container-fluid">
 			<div class="d-flex flex-wrap align-items-center justify-content-around my-1">
 				<div class="logo d-flex align-items-center justify-content-between mb-3 mb-lg-0 me-lg-auto">
-					<img src="@/assets/Notes.NET.svg" alt="Notes.NET" width="56" />
+					<img class="icon" src="@/assets/img/Logo.svg" alt="Notes.NET" width="56" />
 					<button class="bulb btn ms-4 shadow-none">
-						<img src="@/assets/Bulb.svg" alt="Bulb" width="20" />
+						<img class="icon" src="@/assets/img/Bulb.svg" alt="Bulb" width="20" />
 					</button>
 				</div>
 

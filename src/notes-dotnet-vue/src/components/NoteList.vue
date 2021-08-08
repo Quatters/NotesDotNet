@@ -1,6 +1,6 @@
 <template>
 	<div class="container content">
-		<div class="row justify-content-center justify-content-md-start g-4 list">
+		<div class="row justify-content-center justify-content-md-start g-4">
 			<note-constructor class="list-item" @fetch-notes="$emit('fetch-notes')" />
 			<transition-group name="list">
 				<note-instance

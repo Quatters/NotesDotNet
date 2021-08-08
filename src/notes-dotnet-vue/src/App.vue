@@ -2,7 +2,7 @@
 	<div>
 		<app-header @fetch-by-search-query="fetchBySearchQuery" />
 		<loading-spinner v-if="!isDataLoaded" />
-		<network-error v-else-if="networkErrorOccured">We're sorry but server isn't available now. Please, come back later!</network-error>
+		<error-msg v-else-if="networkErrorOccured">We're sorry but server isn't available now. Please, come back later! </error-msg>
 		<note-list @fetch-notes="fetchNotes" v-else :notes="notes" />
 	</div>
 </template>
@@ -11,7 +11,7 @@
 	import NoteList from './components/NoteList.vue';
 	import LoadingSpinner from './components/LoadingSpinner.vue';
 	import AppHeader from './components/AppHeader.vue';
-	import NetworkError from './components/NetworkError.vue';
+	import ErrorMsg from './components/ErrorMessage.vue';
 
 	import axios from 'axios';
 
@@ -20,7 +20,7 @@
 			NoteList,
 			LoadingSpinner,
 			AppHeader,
-			NetworkError,
+			ErrorMsg,
 		},
 		data() {
 			return {

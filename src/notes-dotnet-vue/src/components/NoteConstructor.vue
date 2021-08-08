@@ -1,25 +1,25 @@
 <template>
 	<div class="col-xxl-3 col-xl-4 col-md-6 col-12">
 		<div class="d-flex flex-row justify-content-center">
-			<div class="card note shadow-sm border-dark" v-bind:class="createModeClasses">
-				<button v-if="!createModeEnabled" class="create-button" @click="toggleCreateMode">
-					<img src="@/assets/Plus.svg" alt="Add" width="45" />
+			<div class="note d-flex flex-column" v-bind:class="createModeClasses">
+				<button v-if="!createModeEnabled" class="create-button no-border transparent" @click="toggleCreateMode">
+					<img class="icon" src="@/assets/img/Plus.svg" alt="Add" width="45" />
 				</button>
 
-				<div v-else class="card-body border-dark d-flex flex-column justify-content-between">
-					<div class="card-text date mb-2">
+				<div v-else class="d-flex flex-column note-body">
+					<div class="mb-2">
 						{{ new Date().toLocaleDateString() }}
-						<button @click="toggleCreateMode" class="control-buttons">
-							<img width="18" src="@/assets/X.svg" alt="Discard" />
+						<button @click="toggleCreateMode" class="control-buttons no-border transparent">
+							<img class="icon" width="18" src="@/assets/img/X.svg" alt="Discard" />
 						</button>
-						<button @click="createNote()" class="control-buttons">
-							<img width="18" src="@/assets/Check.svg" alt="Submit" />
+						<button @click="createNote()" class="control-buttons no-border transparent">
+							<img class="icon" width="18" src="@/assets/img/Check.svg" alt="Submit" />
 						</button>
 					</div>
 
-					<textarea v-model="bodyText" :placeholder="placeholder" class="no-border"></textarea>
+					<textarea v-model="bodyText" :placeholder="placeholder" class="no-border transparent f-regular"></textarea>
 
-					<input v-model="author" :placeholder="authorPlaceholder" maxlength="16" class="card-text text-end author no-border" />
+					<input v-model="author" :placeholder="authorPlaceholder" maxlength="16" class="text-end no-border transparent" />
 				</div>
 			</div>
 		</div>
@@ -106,12 +106,8 @@
 </script>
 
 <style scoped>
-	.note {
-		height: 300px;
-		width: 300px;
-		border-radius: 10px;
-		border-width: 1.8px;
-		font-weight: 400;
+	.note-body {
+		flex: 1 1 auto;
 	}
 
 	.note-hover {
@@ -126,14 +122,8 @@
 		transform: scale(1.025);
 	}
 
-	.author,
-	.date {
-		font-weight: 500;
-	}
-
 	textarea {
 		height: 100%;
-		display: flex;
 		resize: none;
 		overflow: auto;
 	}
@@ -141,8 +131,6 @@
 	.control-buttons {
 		margin: 0;
 		padding: 0;
-		border: none;
-		background: transparent;
 		transition: all 0.3s ease;
 		float: right;
 		margin-left: 14px;
@@ -154,7 +142,5 @@
 
 	.create-button {
 		padding: 126px;
-		border: none;
-		background: transparent;
 	}
 </style>

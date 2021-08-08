@@ -93,7 +93,7 @@ namespace WebApi.Controllers
 		[Route("New")]
 		public async Task<IActionResult> AddNote([FromBody] NoteDto noteRequest)
 		{
-			//return Ok("Post currently disabled."); // debug
+			return Ok("Post currently disabled."); // debug
 
 			string author = string.IsNullOrEmpty(noteRequest.Author) ? "Anonymous" : noteRequest.Author;
 			var note = new Note { Author = author, Body = noteRequest.Body, DateModified = DateTime.UtcNow };
