@@ -75,7 +75,7 @@
 <style scoped>
 	header {
 		transition: transform 0.3s ease;
-		background-color: rgba(253, 253, 253, 0.527);
+		background-color: var(--secondary-color);
 	}
 
 	header.hide {

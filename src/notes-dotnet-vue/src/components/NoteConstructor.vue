@@ -2,14 +2,14 @@
 	<div class="col-xxl-3 col-xl-4 col-md-6 col-12">
 		<div class="d-flex flex-row justify-content-center">
 			<div class="note d-flex flex-column" :class="createModeClasses">
-				<button v-if="!createModeEnabled" class="create-button no-border transparent" @click="toggleCreateMode">
+				<button v-if="!createModeEnabled" class="create-button no-border transparent" @click="createModeEnabled = true">
 					<img class="icon" src="@/assets/img/Plus.svg" alt="Add" width="45" />
 				</button>
 
 				<div v-else class="d-flex flex-column note-body">
 					<div class="mb-2">
 						{{ new Date().toLocaleDateString() }}
-						<button @click="toggleCreateMode" class="control-buttons no-border transparent">
+						<button @click="createModeEnabled = false" class="control-buttons no-border transparent">
 							<img class="icon" width="16" src="@/assets/img/X.svg" alt="Discard" />
 						</button>
 						<button @click="createNote()" class="control-buttons no-border transparent">
@@ -22,6 +22,7 @@
 						:placeholder="placeholder"
 						maxlength="256"
 						class="no-border transparent f-regular"
+						ref="textarea"
 					></textarea>
 
 					<input v-model="author" :placeholder="authorPlaceholder" maxlength="16" class="text-end no-border transparent" />
@@ -71,10 +72,6 @@
 					this.setRandomPlaceholderText();
 				}
 			},
-			toggleCreateMode() {
-				this.createModeEnabled = !this.createModeEnabled;
-				this.placeholder = 'Type something awesome!';
-			},
 			async sendPostRequest() {
 				console.log('POST Request to', this.$store.state.apiUrl + '/New');
 				console.log('Sending data:', '[body]:', this.bodyText, '[author]:', this.author);
@@ -105,6 +102,16 @@
 					'd-flex align-items-center justify-content-center cursor-pointer note-hover': !this.createModeEnabled,
 					'scaled-note': this.createModeEnabled,
 				};
+			},
+		},
+		watch: {
+			createModeEnabled() {
+				if (this.createModeEnabled) {
+					this.placeholder = 'Type something awesome!';
+					setTimeout(() => {
+						this.$refs.textarea.focus();
+					}, 10);
+				}
 			},
 		},
 	};

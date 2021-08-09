@@ -4,6 +4,7 @@
 		<loading-spinner v-if="!isDataLoaded" />
 		<error-msg v-else-if="networkErrorOccured">We're sorry but server isn't available now. Please, come back later! </error-msg>
 		<note-list @fetch-notes="fetchNotes" v-else :notes="notes" />
+		<div style="height: 5000px"></div>
 	</div>
 </template>
 
