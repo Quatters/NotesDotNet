@@ -1,46 +1,23 @@
 <template>
-	<header class="p-2 text-dark shadow-sm sticky-top">
+	<header class="p-2 ex-shadow sticky-top">
 		<div class="container-fluid">
 			<div class="d-flex flex-wrap align-items-center justify-content-around my-1">
 				<div class="logo d-flex align-items-center justify-content-between mb-3 mb-lg-0 me-lg-auto">
 					<img class="icon" src="@/assets/img/Logo.svg" alt="Notes.NET" width="56" />
-					<button class="bulb btn ms-4 shadow-none">
+					<button class="bulb btn ms-4">
 						<img class="icon" src="@/assets/img/Bulb.svg" alt="Bulb" width="20" />
 					</button>
 				</div>
 
 				<div class="col-12 col-lg-5 mb-2 mb-lg-0 me-lg-3">
-					<div class="input-group input-group-sm">
-						<span class="input-group-text" id="from-text">From</span>
-						<input
-							v-model="searchFromDateQuery"
-							@input="search"
-							class="form-control shadow-none"
-							type="date"
-							aria-describedby="from-text"
-						/>
-						<span class="input-group-text" id="to-text">To</span>
-						<input
-							v-model="searchToDateQuery"
-							@input="search"
-							class="form-control shadow-none"
-							type="date"
-							aria-describedby="to-text"
-						/>
-					</div>
+					<input-date v-model:dateFrom="searchFromDateQuery" v-model:dateTo="searchToDateQuery" @clear="clearDateQuery" />
 				</div>
 				<div class="col-12 col-lg-3 me-lg-3">
-					<div class="input-group">
-						<input
-							v-model="searchAuthorQuery"
-							@input="search"
-							type="search"
-							class="form-control shadow-none"
-							placeholder="Search for somebody..."
-							aria-label="Search"
-						/>
-						<button @click="search" class="btn btn-sm btn-outline-dark shadow-none" type="button">Search</button>
-					</div>
+					<input-text
+						v-model:search-query="searchAuthorQuery"
+						@clear="clearSearchAuthorQuery"
+						:placeholder="'Search for somebody...'"
+					/>
 				</div>
 			</div>
 		</div>
@@ -48,7 +25,14 @@
 </template>
 
 <script>
+	import InputText from '@/components/InputText.vue';
+	import InputDate from '@/components/InputDate.vue';
+
 	export default {
+		components: {
+			InputText,
+			InputDate,
+		},
 		data() {
 			return {
 				searchAuthorQuery: '',
@@ -66,6 +50,24 @@
 					this.$emit('fetch-by-search-query', this.searchAuthorQuery, this.searchFromDateQuery, this.searchToDateQuery);
 				}, 800);
 			},
+			clearSearchAuthorQuery() {
+				this.searchAuthorQuery = '';
+			},
+			clearDateQuery() {
+				this.searchToDateQuery = '';
+				this.searchFromDateQuery = '';
+			},
+		},
+		watch: {
+			searchAuthorQuery() {
+				this.search();
+			},
+			searchFromDateQuery() {
+				this.search();
+			},
+			searchToDateQuery() {
+				this.search();
+			},
 		},
 	};
 </script>
@@ -73,7 +75,7 @@
 <style scoped>
 	header {
 		transition: transform 0.3s ease;
-		background-color: rgb(245, 245, 245);
+		background-color: rgba(253, 253, 253, 0.527);
 	}
 
 	header.hide {
@@ -86,15 +88,5 @@
 
 	.bulb:hover {
 		transform: scale(1.1);
-	}
-
-	input,
-	.input-group-text,
-	button {
-		border-width: 1.5px !important;
-	}
-
-	input:focus {
-		border-color: black !important;
 	}
 </style>

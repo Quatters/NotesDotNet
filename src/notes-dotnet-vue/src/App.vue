@@ -9,9 +9,9 @@
 
 <script>
 	import NoteList from './components/NoteList.vue';
-	import LoadingSpinner from './components/LoadingSpinner.vue';
+	import LoadingSpinner from './components/UI/LoadingSpinner.vue';
 	import AppHeader from './components/AppHeader.vue';
-	import ErrorMsg from './components/ErrorMessage.vue';
+	import ErrorMsg from './components/UI/ErrorMessage.vue';
 
 	import axios from 'axios';
 

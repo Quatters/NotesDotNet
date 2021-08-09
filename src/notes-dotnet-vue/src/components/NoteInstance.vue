@@ -22,3 +22,21 @@
 		},
 	};
 </script>
+
+<style>
+	.note {
+		padding: 1rem;
+		height: 300px;
+		width: 300px;
+		transition: all 0.3s ease;
+		background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+		word-wrap: break-word;
+		overflow: hidden;
+		box-shadow: 3px 3px 4px 1px rgba(84, 92, 105, 0.17);
+		-moz-box-shadow: 3px 3px 4px 1px rgba(84, 92, 105, 0.17);
+		-webkit-box-shadow: 3px 3px 4px 1px rgba(84, 92, 105, 0.17);
+		border: 2px solid var(--contrast-color);
+		border-radius: 10px;
+		display: inline-block;
+	}
+</style>

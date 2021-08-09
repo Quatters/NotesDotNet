@@ -1,7 +1,7 @@
 <template>
 	<div class="col-xxl-3 col-xl-4 col-md-6 col-12">
 		<div class="d-flex flex-row justify-content-center">
-			<div class="note d-flex flex-column" v-bind:class="createModeClasses">
+			<div class="note d-flex flex-column" :class="createModeClasses">
 				<button v-if="!createModeEnabled" class="create-button no-border transparent" @click="toggleCreateMode">
 					<img class="icon" src="@/assets/img/Plus.svg" alt="Add" width="45" />
 				</button>
@@ -10,14 +10,19 @@
 					<div class="mb-2">
 						{{ new Date().toLocaleDateString() }}
 						<button @click="toggleCreateMode" class="control-buttons no-border transparent">
-							<img class="icon" width="18" src="@/assets/img/X.svg" alt="Discard" />
+							<img class="icon" width="16" src="@/assets/img/X.svg" alt="Discard" />
 						</button>
 						<button @click="createNote()" class="control-buttons no-border transparent">
-							<img class="icon" width="18" src="@/assets/img/Check.svg" alt="Submit" />
+							<img class="icon" width="16" src="@/assets/img/Check.svg" alt="Submit" />
 						</button>
 					</div>
 
-					<textarea v-model="bodyText" :placeholder="placeholder" class="no-border transparent f-regular"></textarea>
+					<textarea
+						v-model="bodyText"
+						:placeholder="placeholder"
+						maxlength="256"
+						class="no-border transparent f-regular"
+					></textarea>
 
 					<input v-model="author" :placeholder="authorPlaceholder" maxlength="16" class="text-end no-border transparent" />
 				</div>
@@ -55,10 +60,10 @@
 				}
 			},
 			createNote() {
-				/*if (this.author.trim().toLowerCase() === 'admin') {
+				if (this.author.trim().toLowerCase() === 'admin') {
 					this.author = '';
 					this.authorPlaceholder = "You're not an admin :0";
-				} else*/ if (this.bodyText.length !== 0) {
+				} else if (this.bodyText.length !== 0) {
 					this.toggleCreateMode();
 					this.sendPostRequest();
 					this.bodyText = '';
