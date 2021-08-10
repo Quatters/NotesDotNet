@@ -1,7 +1,7 @@
 <template>
 	<div class="col-xxl-3 col-xl-4 col-md-6 col-12">
 		<div class="d-flex flex-row justify-content-center">
-			<div class="note d-flex flex-column" :class="createModeClasses">
+			<div class="note ex-shadow d-flex flex-column" :class="createModeClasses">
 				<button v-if="!createModeEnabled" class="create-button no-border transparent" @click="createModeEnabled = true">
 					<img class="icon" src="@/assets/img/Plus.svg" alt="Add" width="45" />
 				</button>

@@ -39,18 +39,20 @@
 
 <style scoped>
 	input {
-		background-color: #fff;
-		border: 1px solid rgba(0, 0, 0, 0.25);
+		background-color: var(--secondary-color);
+		border: 1px solid var(--contrast-color-sm);
 		border-radius: 5px;
 		padding: 6px 10px;
 		transition: all 0.3s ease;
+		color: var(--contrast-color-md);
 	}
 
 	input:hover,
 	input:focus {
 		background-color: var(--primary-color);
 		outline: none !important;
-		border: 1px solid rgba(0, 0, 0, 0.25);
+		border: 1px solid var(--contrast-color-sm);
+		color: var(--contrast-color-md);
 	}
 
 	.input-group-text {
@@ -59,8 +61,9 @@
 
 	.from,
 	.to {
-		border: 1px solid rgba(0, 0, 0, 0.25);
+		border: 1px solid var(--contrast-color-sm);
 		border-right: none;
+		color: var(--contrast-color);
 	}
 
 	.to {
@@ -69,7 +72,7 @@
 
 	.clear-button {
 		background-color: var(--primary-color);
-		border: 1px solid rgba(0, 0, 0, 0.25);
+		border: 1px solid var(--contrast-color-sm);
 		border-left: none;
 		border-radius: 0 2px 2px 0;
 		padding: 4px 8px 4px 9px;

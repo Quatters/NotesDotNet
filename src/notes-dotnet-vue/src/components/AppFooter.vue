@@ -9,12 +9,15 @@
 					</p>
 				</div>
 				<div class="d-flex summary">
-					<p class="me-3">
+					<p class="mx-3">
 						Total notes: <strong>{{ totalNotes }}</strong>
 					</p>
-					<p>
+					<p class="me-3">
 						Most known author: <strong>{{ mostFrequentAuthor }}</strong>
 					</p>
+					<button @click="scrollUp" class="up p-0 no-border transparent">
+						<img class="icon mb-3" src="@/assets/img/Arrow.svg" alt="Up" width="17" />
+					</button>
 				</div>
 			</div>
 		</div>
@@ -27,14 +30,29 @@
 			mostFrequentAuthor: '',
 			totalNotes: 0,
 		},
+		methods: {
+			scrollUp() {
+				const el = this.$refs.noteConstructor;
+				window.scrollTo(0, 0);
+			},
+		},
 	};
 </script>
 
 <style scoped>
+	.up {
+		transition: all 0.3s ease;
+		opacity: 75%;
+	}
+
+	.up:hover {
+		opacity: 100%;
+	}
+
 	.content {
 		margin-top: 30px;
 		padding: 12px 0 0 8px;
-		border-top: 1px solid rgb(199, 199, 199);
+		border-top: 1px solid var(--contrast-color-sm);
 	}
 
 	footer {

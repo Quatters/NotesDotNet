@@ -15,12 +15,15 @@ body {
 	font-size: 14px;
 	font-weight: 500;
 	background-color: var(--primary-color);
+	caret-color: var(--contrast-color);
+	color: var(--contrast-color);
 	height: 100%;
 }
 
 textarea,
 input {
 	font-weight: inherit;
+	color: var(--contrast-color);
 }
 
 .no-border,
@@ -40,9 +43,7 @@ input {
 }
 
 .ex-shadow {
-	box-shadow: 3px 3px 4px 1px rgba(84, 92, 105, 0.17);
-	-moz-box-shadow: 3px 3px 4px 1px rgba(84, 92, 105, 0.17);
-	-webkit-box-shadow: 3px 3px 4px 1px rgba(84, 92, 105, 0.17);
+	box-shadow: 3px 3px 4px 1px var(--shadow-color);
 }
 
 .transparent {
@@ -56,4 +57,8 @@ input {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+::placeholder {
+	color: var(--contrast-color-md);
 }

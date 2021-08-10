@@ -1,7 +1,7 @@
 <template>
 	<div class="container content">
 		<div class="row justify-content-center justify-content-md-start g-4">
-			<note-constructor class="list-item" @fetch-notes="$emit('fetch-notes')" />
+			<note-constructor ref="noteConstructor" class="list-item" @fetch-notes="$emit('fetch-notes')" />
 			<transition-group name="list">
 				<note-instance
 					v-for="note in notes"

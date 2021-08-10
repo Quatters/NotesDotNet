@@ -1,0 +1,33 @@
+:root {
+	--primary-color: rgb(239, 239, 239);
+	--contrast-color: rgb(59, 60, 63);
+	--contrast-color-md: rgba(59, 60, 63, 0.7);
+	--contrast-color-sm: rgba(59, 60, 63, 0.3);
+	--secondary-color: rgb(247, 247, 247);
+	--shadow-color: rgba(0, 0, 0, 0.16);
+}
+
+html .icon,
+html ::-webkit-calendar-picker-indicator {
+	/* 
+	 * Allows to change the .svg color.
+	 * Make sure the original color is #000.
+	 */
+	filter: invert(23%) sepia(8%) saturate(274%) hue-rotate(187deg) brightness(87%) contrast(90%);
+}
+
+html[theme='dark'] .icon,
+html[theme='dark'] ::-webkit-calendar-picker-indicator {
+	filter: invert(90%) sepia(0%) saturate(37%) hue-rotate(200deg) brightness(86%) contrast(87%);
+}
+
+[theme='dark'] {
+	--primary-color: rgb(31, 30, 30);
+	--contrast-color: rgb(190, 190, 190);
+	--contrast-color-md: rgba(190, 190, 190, 0.7);
+	--contrast-color-sm: rgba(190, 190, 190, 0.3);
+	--secondary-color: rgb(20, 20, 19);
+	/* --shadow-color: rgba(255, 255, 255, 0.1); */
+
+	--shadow-color: rgba(0, 0, 0, 0.5);
+}

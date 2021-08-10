@@ -7,7 +7,7 @@
 			:placeholder="placeholder"
 			class="flex-fill f-regular"
 		/>
-		<button v-if="searchQuery.length !== 0" @click="$emit('clear')" class="clear-button transparent no-border">
+		<button v-if="searchQuery.length !== 0" @click="$emit('clear')" class="clear-button transparent no-border p-0">
 			<img class="icon" src="@/assets/img/X.svg" alt="Notes.NET" width="12" />
 		</button>
 		<slot></slot>
@@ -25,10 +25,10 @@
 
 <style scoped>
 	input {
-		background-color: #fff;
-		border: 1px solid rgba(0, 0, 0, 0.25);
+		background-color: var(--secondary-color);
+		border: 1px solid var(--contrast-color-sm);
 		border-radius: 3px;
-		padding: 6px 10px;
+		padding: 4px 10px;
 		transition: all 0.3s ease;
 	}
 
@@ -39,8 +39,10 @@
 	}
 
 	.clear-button {
-		position: absolute;
-		margin-inline-end: 12px;
-		padding: 0;
+		/* position: absolute; */
+		/* margin-right: 12px; */
+		margin-left: -22px;
+		margin-right: 10px;
+		/* margin-inline-end: 12px; */
 	}
 </style>

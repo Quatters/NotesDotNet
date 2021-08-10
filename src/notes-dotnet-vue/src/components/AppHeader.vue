@@ -2,15 +2,12 @@
 	<header class="p-2 ex-shadow sticky-top" :class="toggleVisibility">
 		<div class="container">
 			<div class="d-flex flex-wrap align-items-center justify-content-around my-1">
-				<div v-if="!logoRemoved" class="d-flex align-items-center justify-content-between mb-3 mb-lg-0 me-lg-auto">
-					<img class="icon" src="@/assets/img/Logo.svg" alt="Notes.NET" width="54" />
-					<button class="bulb no-border transparent ms-5 p-1">
-						<img class="icon" src="@/assets/img/Bulb.svg" alt="Bulb" width="20" />
+				<div class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto">
+					<img class="icon" src="@/assets/img/Logo.svg" alt="Notes.NET" width="48" />
+					<button @click="darkMode = !darkMode" class="bulb no-border transparent ms-5 p-1">
+						<img class="icon" src="@/assets/img/Bulb.svg" alt="Bulb" width="19" />
 					</button>
-					<button @click="refresh" class="refresh no-border transparent ms-5 p-1">
-						<img class="icon" src="@/assets/img/Refresh.svg" alt="Bulb" width="23" />
-					</button>
-					<new-notes-message :num="notesCanFetch" />
+					<refresh-button :num="notesCanFetch" @refresh="refresh" />
 				</div>
 
 				<div class="col-12 col-lg-5 mb-2 mb-lg-0 me-lg-3">
@@ -31,13 +28,13 @@
 <script>
 	import InputText from '@/components/InputText.vue';
 	import InputDate from '@/components/InputDate.vue';
-	import NewNotesMessage from '@/components/UI/NewNotesMessage.vue';
+	import RefreshButton from '@/components/UI/RefreshButton.vue';
 
 	export default {
 		components: {
 			InputText,
 			InputDate,
-			NewNotesMessage,
+			RefreshButton,
 		},
 		props: {
 			notesCanFetch: Number,
@@ -49,7 +46,7 @@
 				searchToDateQuery: '',
 				scrollPrev: 0,
 				headerHidden: false,
-				logoRemoved: false,
+				darkMode: false,
 			};
 		},
 		methods: {
@@ -84,6 +81,18 @@
 				}
 			},
 		},
+		mounted() {
+			let htmlElement = document.documentElement;
+			let theme = localStorage.getItem('theme');
+
+			if (theme === 'dark') {
+				htmlElement.setAttribute('theme', 'dark');
+				this.darkMode = true;
+			} else {
+				htmlElement.setAttribute('theme', 'light');
+				this.darkMode = false;
+			}
+		},
 		created() {
 			window.addEventListener('scroll', this.handleScroll);
 		},
@@ -91,6 +100,17 @@
 			window.removeEventListener('scroll', this.handleScroll);
 		},
 		watch: {
+			darkMode() {
+				const htmlElement = document.documentElement;
+
+				if (this.darkMode) {
+					localStorage.setItem('theme', 'dark');
+					htmlElement.setAttribute('theme', 'dark');
+				} else {
+					localStorage.setItem('theme', 'light');
+					htmlElement.setAttribute('theme', 'light');
+				}
+			},
 			searchAuthorQuery() {
 				this.search();
 			},
@@ -119,15 +139,6 @@
 
 	header.hide {
 		transform: translateY(-100%);
-	}
-
-	.refresh:hover {
-		transform: rotate(360deg);
-	}
-
-	.refresh {
-		margin-top: 2px;
-		transition: all 1.1s ease;
 	}
 
 	.bulb {

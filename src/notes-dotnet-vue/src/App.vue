@@ -3,8 +3,7 @@
 	<loading-spinner v-if="!isDataLoaded" />
 	<error-msg v-else-if="networkErrorOccured">We're sorry but server isn't available now. Please, come back later! </error-msg>
 	<note-list @fetch-notes="fetchNotes" v-else :notes="notes" />
-	<up-down-buttons />
-	<!-- <div style="height: 5000px"></div> -->
+	<!-- <up-down-buttons /> -->
 	<app-footer :totalNotes="notesMaxLength" :mostFrequentAuthor="mostFrequentAuthor" />
 </template>
 
