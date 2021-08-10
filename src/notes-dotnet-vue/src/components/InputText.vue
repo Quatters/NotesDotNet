@@ -10,6 +10,7 @@
 		<button v-if="searchQuery.length !== 0" @click="$emit('clear')" class="clear-button transparent no-border">
 			<img class="icon" src="@/assets/img/X.svg" alt="Notes.NET" width="12" />
 		</button>
+		<slot></slot>
 	</div>
 </template>
 

@@ -10,13 +10,8 @@
 </template>
 
 <style scoped>
-	@media (max-width: 992px) {
-		.lds-ellipsis {
-			margin-top: 14.5em;
-		}
-	}
 	.lds-ellipsis {
-		margin-top: 8em;
+		margin-top: 3em;
 		position: relative;
 		width: 80px;
 		height: 80px;

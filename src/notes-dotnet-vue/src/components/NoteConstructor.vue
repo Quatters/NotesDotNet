@@ -12,7 +12,7 @@
 						<button @click="createModeEnabled = false" class="control-buttons no-border transparent">
 							<img class="icon" width="16" src="@/assets/img/X.svg" alt="Discard" />
 						</button>
-						<button @click="createNote()" class="control-buttons no-border transparent">
+						<button @click="createNote" class="control-buttons no-border transparent">
 							<img class="icon" width="16" src="@/assets/img/Check.svg" alt="Submit" />
 						</button>
 					</div>
@@ -61,11 +61,11 @@
 				}
 			},
 			createNote() {
-				if (this.author.trim().toLowerCase() === 'admin') {
+				/*if (this.author.trim().toLowerCase() === 'admin') {
 					this.author = '';
 					this.authorPlaceholder = "You're not an admin :0";
-				} else if (this.bodyText.length !== 0) {
-					this.toggleCreateMode();
+				} else */ if (this.bodyText.length !== 0) {
+					this.createModeEnabled = false;
 					this.sendPostRequest();
 					this.bodyText = '';
 				} else {
@@ -97,7 +97,7 @@
 			},
 		},
 		computed: {
-			createModeClasses: function () {
+			createModeClasses() {
 				return {
 					'd-flex align-items-center justify-content-center cursor-pointer note-hover': !this.createModeEnabled,
 					'scaled-note': this.createModeEnabled,
