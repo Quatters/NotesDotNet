@@ -33,7 +33,7 @@
 </template>
 
 <script>
-	import axios from 'axios';
+	import { postNote } from '@/api-services';
 
 	export default {
 		data() {
@@ -61,7 +61,7 @@
 				}
 			},
 			createNote() {
-				if (this.author.trim().toLowerCase() === 'admin') {
+				if (this.author.toLowerCase() === 'admin') {
 					this.author = '';
 					this.authorPlaceholder = "You're not an admin :0";
 				} else if (this.bodyText.length !== 0) {
@@ -73,26 +73,8 @@
 				}
 			},
 			async sendPostRequest() {
-				console.log('POST Request to', this.$store.state.apiUrl + '/New');
-				console.log('Sending data:', '[body]:', this.bodyText, '[author]:', this.author);
-				try {
-					const response = await axios({
-						method: 'post',
-						url: this.$store.state.apiUrl + '/New',
-						data: {
-							body: this.bodyText,
-							author: this.author,
-						},
-					});
-					console.log('Server response: success!', response.data);
-				} catch (error) {
-					console.log(error);
-					if (!error.status) {
-						console.log('Network error');
-					}
-				} finally {
-					this.$emit('fetch-notes');
-				}
+				await postNote(this.author, this.bodyText);
+				this.$emit('fetch-notes');
 			},
 		},
 		computed: {

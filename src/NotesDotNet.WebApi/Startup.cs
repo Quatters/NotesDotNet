@@ -8,6 +8,8 @@ using Microsoft.OpenApi.Models;
 
 using NotesDotNet.WebApi.Data;
 
+using VueCliMiddleware;
+
 namespace NotesDotNet.WebApi
 {
 	public class Startup
@@ -21,7 +23,6 @@ namespace NotesDotNet.WebApi
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddCors();
 			services.AddDbContext<AppDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("MsSqlServer"))
 			);
@@ -31,6 +32,13 @@ namespace NotesDotNet.WebApi
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "Notes.NET", Version = "v1" });
 			});
+
+			services.AddSpaStaticFiles(configuration =>
+			{
+				configuration.RootPath = "../notes-dotnet-vue/dist";
+			});
+
+			services.AddCors();
 		}
 
 
@@ -43,12 +51,20 @@ namespace NotesDotNet.WebApi
 				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Notes.NET Api v1"));
 			}
 
+			app.UseStaticFiles();
+			if (!env.IsDevelopment())
+			{
+				app.UseSpaStaticFiles();
+			}
+
 			app.UseCors(b =>
 			{
 				b.AllowAnyOrigin();
 				b.AllowAnyHeader();
 				b.AllowAnyMethod();
 			});
+
+			app.UseCors();
 
 			app.UseHttpsRedirection();
 
@@ -58,6 +74,16 @@ namespace NotesDotNet.WebApi
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
+			});
+
+			app.UseSpa(spa =>
+			{
+				spa.Options.SourcePath = "../notes-dotnet-vue";
+
+				if (env.IsDevelopment())
+				{
+					spa.UseVueCli(npmScript: "serve");
+				}
 			});
 		}
 	}
