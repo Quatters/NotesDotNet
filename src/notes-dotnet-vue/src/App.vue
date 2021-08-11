@@ -11,7 +11,6 @@
 	import LoadingSpinner from './components/UI/LoadingSpinner.vue';
 	import AppHeader from './components/AppHeader.vue';
 	import ErrorMsg from './components/UI/ErrorMessage.vue';
-	import UpDownButtons from './components/UpDownButtons.vue';
 	import AppFooter from './components/AppFooter.vue';
 	import { getNotes, searchNotes } from './api-services';
 
@@ -21,7 +20,6 @@
 			LoadingSpinner,
 			AppHeader,
 			ErrorMsg,
-			UpDownButtons,
 			AppFooter,
 		},
 		data() {
@@ -53,7 +51,6 @@
 					this.notesCanFetch = response.data.length - this.notesMaxLength;
 					this.computeMostFrequentAuthor();
 				} catch (error) {
-					console.error(error);
 					this.networkErrorOccured = true;
 				} finally {
 					this.isDataLoaded = true;
@@ -71,7 +68,6 @@
 						this.isDataLoaded = true;
 					}
 				} catch (error) {
-					console.error(error);
 					this.networkErrorOccured = true;
 				}
 			},
@@ -80,12 +76,8 @@
 					this.fetchNotes();
 					return;
 				}
-				try {
-					const response = await searchNotes(author, from, to);
-					this.notes = this.castResponse(response);
-				} catch (error) {
-					console.log(error);
-				}
+				const response = await searchNotes(author, from, to);
+				this.notes = this.castResponse(response);
 			},
 			authorComparer(note1, note2) {
 				if (note1.author > note2.author) return 1;
