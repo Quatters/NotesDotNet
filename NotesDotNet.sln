@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotesDotNet.WebApi", "src\NotesDotNet.WebApi\NotesDotNet.WebApi.csproj", "{4F6D1D85-59DD-491C-A693-316B5EA78EFE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotesDotNet.Tests", "src\NotesDotNet.Tests\NotesDotNet.Tests.csproj", "{B90DC850-3F2C-40F5-A02A-8210A55A181A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{4F6D1D85-59DD-491C-A693-316B5EA78EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F6D1D85-59DD-491C-A693-316B5EA78EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F6D1D85-59DD-491C-A693-316B5EA78EFE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B90DC850-3F2C-40F5-A02A-8210A55A181A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B90DC850-3F2C-40F5-A02A-8210A55A181A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B90DC850-3F2C-40F5-A02A-8210A55A181A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B90DC850-3F2C-40F5-A02A-8210A55A181A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
