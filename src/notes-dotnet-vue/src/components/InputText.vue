@@ -39,10 +39,7 @@
 	}
 
 	.clear-button {
-		/* position: absolute; */
-		/* margin-right: 12px; */
 		margin-left: -22px;
 		margin-right: 10px;
-		/* margin-inline-end: 12px; */
 	}
 </style>

@@ -18,14 +18,14 @@
 					</div>
 
 					<textarea
-						v-model="bodyText"
+						v-model.trim="bodyText"
 						:placeholder="placeholder"
 						maxlength="256"
 						class="no-border transparent f-regular"
 						ref="textarea"
 					></textarea>
 
-					<input v-model="author" :placeholder="authorPlaceholder" maxlength="16" class="text-end no-border transparent" />
+					<input v-model.trim="author" :placeholder="authorPlaceholder" maxlength="16" class="text-end no-border transparent" />
 				</div>
 			</div>
 		</div>
@@ -61,10 +61,10 @@
 				}
 			},
 			createNote() {
-				/*if (this.author.trim().toLowerCase() === 'admin') {
+				if (this.author.trim().toLowerCase() === 'admin') {
 					this.author = '';
 					this.authorPlaceholder = "You're not an admin :0";
-				} else */ if (this.bodyText.length !== 0) {
+				} else if (this.bodyText.length !== 0) {
 					this.createModeEnabled = false;
 					this.sendPostRequest();
 					this.bodyText = '';
@@ -89,7 +89,6 @@
 					console.log(error);
 					if (!error.status) {
 						console.log('Network error');
-						// this.networkErrorOccured = true; --emit
 					}
 				} finally {
 					this.$emit('fetch-notes');
