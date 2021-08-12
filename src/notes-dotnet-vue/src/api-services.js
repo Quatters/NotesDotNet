@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const debug = process.env.NODE_ENV !== 'production';
-const url = debug ? 'https://localhost:44312/api/Notes' : 'https://notesdotnet.io/api/Notes';
+const url = debug ? 'https://localhost:5000/api/Notes' : 'https://notesdotnet.herokuapp.com/api/Notes';
 
 const api = axios.create({
 	baseURL: url,
