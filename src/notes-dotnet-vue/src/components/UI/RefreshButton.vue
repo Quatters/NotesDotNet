@@ -2,8 +2,8 @@
 	<button @click="$emit('refresh'), refreshClickHandler()" :disabled="refreshClicked" class="refresh no-border transparent ms-5 p-0">
 		<img class="icon" src="@/assets/img/Refresh.svg" alt="Refresh" width="23" />
 	</button>
-	<span v-show="num > 0" class="new-notes-text">{{ num }} new</span>
-	<span v-show="refreshClicked" ref="utdText" class="utd-text">Up to date</span>
+	<span v-if="num > 0" class="new-notes-text">{{ num }} new</span>
+	<span v-else-if="refreshClicked" ref="utdText" class="utd-text">Up to date</span>
 </template>
 
 <script>

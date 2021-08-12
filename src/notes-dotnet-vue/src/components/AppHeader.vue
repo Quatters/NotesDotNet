@@ -76,9 +76,7 @@
 				this.scrollPrev = scrolled;
 			},
 			refresh() {
-				if (this.notesCanFetch !== 0) {
-					this.$emit('fetch-notes');
-				}
+				this.$emit('fetch-notes');
 			},
 		},
 		mounted() {
