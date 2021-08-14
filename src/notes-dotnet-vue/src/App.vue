@@ -51,6 +51,7 @@
 					this.notesCanFetch = response.data.length - this.notesMaxLength;
 					this.computeMostFrequentAuthor();
 				} catch (error) {
+					if (error.status !== 304)
 					this.networkErrorOccured = true;
 				} finally {
 					this.isDataLoaded = true;

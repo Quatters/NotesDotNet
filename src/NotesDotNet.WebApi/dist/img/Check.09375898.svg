@@ -1,0 +1,10 @@
+<svg id="Check" data-name="Check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.2 124.2">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M119.6,1.2a9,9,0,0,0-12.3,3.3l-56.7,96L15.4,59.2c-8.8-8.1-20.9,4-12.8,12.7l43.6,49.7a9.2,9.2,0,0,0,14.2-1.9L123,13.5A9.1,9.1,0,0,0,119.6,1.2Z" transform="translate(0 0)"/>
+</svg>

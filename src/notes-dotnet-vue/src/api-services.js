@@ -5,7 +5,7 @@ const url = debug ? 'https://localhost:44312/api/Notes' : 'https://notesdotnet.a
 
 const api = axios.create({
 	baseURL: url,
-	timeout: 1500,
+	timeout: 4000,
 });
 
 async function getNotes() {

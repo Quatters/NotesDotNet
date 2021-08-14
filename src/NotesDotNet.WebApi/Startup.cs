@@ -27,20 +27,16 @@ namespace NotesDotNet.WebApi
 				options.UseSqlServer(Configuration.GetConnectionString("MsSqlServer"))
 			);
 
+			services.AddSpaStaticFiles(configuration => configuration.RootPath = "dist");
+
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "Notes.NET", Version = "v1" });
 			});
 
-			services.AddSpaStaticFiles(configuration =>
-			{
-				configuration.RootPath = "../notes-dotnet-vue/dist";
-			});
-
 			services.AddCors();
 		}
-
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
@@ -49,27 +45,24 @@ namespace NotesDotNet.WebApi
 				app.UseDeveloperExceptionPage();
 				app.UseSwagger();
 				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Notes.NET Api v1"));
+				app.UseCors(b =>
+				{
+					b.AllowAnyOrigin();
+					b.AllowAnyHeader();
+					b.AllowAnyMethod();
+				});
 			}
 
 			app.UseStaticFiles();
 			if (!env.IsDevelopment())
 			{
 				app.UseSpaStaticFiles();
+				app.UseHsts();
 			}
-
-			app.UseCors(b =>
-			{
-				b.AllowAnyOrigin();
-				b.AllowAnyHeader();
-				b.AllowAnyMethod();
-			});
-
-			app.UseCors();
 
 			app.UseHttpsRedirection();
 
 			app.UseRouting();
-			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{
