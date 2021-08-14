@@ -98,7 +98,7 @@
 	};
 </script>
 
-<style scoped>
+<style scoped>	
 	.note-body {
 		flex: 1 1 auto;
 	}
@@ -118,7 +118,7 @@
 	textarea {
 		height: 100%;
 		resize: none;
-		overflow: auto;
+		overflow: hidden;
 	}
 
 	.control-buttons {

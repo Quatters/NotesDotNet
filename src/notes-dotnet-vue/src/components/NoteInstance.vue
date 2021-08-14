@@ -5,7 +5,7 @@
 				<p class="mb-2">
 					{{ dateModified.toLocaleDateString() }}
 				</p>
-				<p class="mb-auto f-regular">{{ body }}</p>
+				<p class="mb-auto f-regular body-text">{{ body }}</p>
 				<p class="text-end m-0">{{ author }}</p>
 			</div>
 		</div>
@@ -24,6 +24,10 @@
 </script>
 
 <style>
+	.body-text {
+		overflow: hidden;
+	}
+
 	.note {
 		padding: 1rem;
 		height: 300px;
